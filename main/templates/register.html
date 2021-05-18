@@ -16,7 +16,7 @@
 
 <body>
 
-
+  <!-- ...........[navBar]..................... -->
   <div class="w3-container w3-animate-top">
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
       <a class="navbar-brand" href="#">Logo</a>
@@ -41,7 +41,7 @@
         <button class="w3-bar-item w3-button tablink" onclick="openCity(event,'addEvents')">Add Event</button>
         <button class="w3-bar-item w3-button tablink" onclick="openCity(event,'test')">test</button>
       </div>
-
+      <!-- .............[your events code]................. -->
       <div id="youEvents" class="w3-container w3-border city">
         <table class="table table-dark table-hover">
           <thead class="w3-black">
@@ -63,9 +63,54 @@
         </table>
       </div>
 
+      <!-- ........[add Events tab code].......... -->
       <div id="addEvents" class="w3-container w3-border city" style="display:none">
         <h2>addEvents</h2>
-        <p>add forms to it</p>
+        <form>
+          <div class="container my-3">
+            <div class="card">
+              <div class="card-body">
+                <div class="input-group flex-nowrap">   <!--event name-->
+                  <span class="input-group-text" id="addon-wrapping">Event Name</span>
+                  <input type="text" class="form-control" placeholder="webinar,etc" aria-label="webinar"
+                    aria-describedby="addon-wrapping">
+                </div>
+
+                <div class="row my-3"> <!--date and Time-->
+                  <div class="col">
+                    <input type="text" class="form-control" placeholder="Date" aria-label="Date">
+                  </div>
+                  <div class="col">
+                    <input type="text" class="form-control" placeholder="Time" aria-label="Time">
+                  </div>
+                </div>
+
+                <div class="input-group my-3">
+                  <span class="input-group-text">description</span>
+                  <textarea class="form-control" aria-label="With textarea"></textarea>
+                </div>
+
+                <div class="row my-3"> <!--location and max participants-->
+                  <div class="col">
+                    <input type="text" class="form-control" placeholder="place" aria-label="place">
+                  </div>
+                  <div class="col">
+                    <input type="text" class="form-control" placeholder="max participants" aria-label="participants">
+                  </div>
+                </div>                
+
+                <div class="input-group mb-3">
+                  <span class="input-group-text">Banner</span>
+                  <input type="file" class="form-control" id="inputGroupFile02">
+                </div>
+
+                <button type="submit" class="btn btn-outline-dark">Done</button>
+              </div>
+            </div>
+        </form>
+
+
+
       </div>
 
       <div id="test" class="w3-container w3-border city" style="display:none">
