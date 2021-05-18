@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <title>Events</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+</head>
+
+<body>
+
+
+  <div class="w3-container w3-animate-top">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+      <a class="navbar-brand" href="#">Logo</a>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Event</a>
+        </li>
+      </ul>
+    </nav>
+    <br><br><br><br>
+
+    <div class="w3-container">
+      <h2>Active Tabs</h2>
+      <p>To highlight the current tab/page the user is on, add a color class, and use JavaScript to update the active
+        link.</p>
+
+      <div class="w3-bar w3-black">
+        <button class="w3-bar-item w3-button tablink" onclick="openCity(event,'youEvents')">Your Events</button>
+        <button class="w3-bar-item w3-button tablink" onclick="openCity(event,'addEvents')">Add Event</button>
+        <button class="w3-bar-item w3-button tablink" onclick="openCity(event,'test')">test</button>
+      </div>
+
+      <div id="youEvents" class="w3-container w3-border city">
+        <table class="table table-dark table-hover">
+          <thead class="w3-black">
+            <tr>
+              <th scope="col">sNo</th>
+              <th scope="col">Event</th>
+              <th scope="col">Date and Time</th>
+              <th scope="col">max</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>@mdo</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div id="addEvents" class="w3-container w3-border city" style="display:none">
+        <h2>addEvents</h2>
+        <p>add forms to it</p>
+      </div>
+
+      <div id="test" class="w3-container w3-border city" style="display:none">
+        <h2>test</h2>
+        <p>for test.</p>
+      </div>
+    </div>
+
+    <script>
+      function openCity(evt, cityName) {
+        var i, x, tablinks;
+        x = document.getElementsByClassName("city");
+        for (i = 0; i < x.length; i++) {
+          x[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablink");
+        for (i = 0; i < x.length; i++) {
+          tablinks[i].className = tablinks[i].className.replace(" bg-dark", "");
+        }
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " bg-dark";
+      }
+    </script>
+
+  </div>
+
+
+
+</body>
+
+</html>
