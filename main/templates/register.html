@@ -19,7 +19,7 @@
   <!-- ...........[navBar]..................... -->
   <div class="w3-container w3-animate-top">
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
-      <a class="navbar-brand" href="#">Logo</a>
+      <a class="navbar-brand" href="/">Logo</a>
       <ul class="navbar-nav">
         <li class="nav-item">
           <a class="nav-link" href="/">Home</a>
@@ -49,16 +49,22 @@
               <th scope="col">sNo</th>
               <th scope="col">Event</th>
               <th scope="col">Date and Time</th>
+              <th scope="col">place</th>
+              <th scope="col">description</th>
               <th scope="col">max</th>
             </tr>
           </thead>
           <tbody>
+            {% for newEvent in allEvents %}
             <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
+              <th scope="row">{{loop.index}}</th>
+              <td>{{newEvent.eventName}}</td>
+              <td>{{newEvent.date}} - {{newEvent.time}}</td>
+              <td>{{newEvent.place}}</td>
+              <td>{{newEvent.desc}}</td>
+              <td>{{newEvent.max_member}}</td>
             </tr>
+            {% endfor %}
           </tbody>
         </table>
       </div>
@@ -66,47 +72,52 @@
       <!-- ........[add Events tab code].......... -->
       <div id="addEvents" class="w3-container w3-border city" style="display:none">
         <h2>addEvents</h2>
-        <form>
+        <form action="/" method="POST">
           <div class="container my-3">
             <div class="card">
               <div class="card-body">
-                <div class="input-group flex-nowrap">   <!--event name-->
+                <div class="input-group flex-nowrap">
+                  <!--event name-->
                   <span class="input-group-text" id="addon-wrapping">Event Name</span>
-                  <input type="text" class="form-control" placeholder="webinar,etc" aria-label="webinar"
+                  <input type="text" class="form-control" placeholder="webinar,etc" name=eventName aria-label="webinar"
                     aria-describedby="addon-wrapping">
                 </div>
 
-                <div class="row my-3"> <!--date and Time-->
+                <div class="row my-3">
+                  <!--date and Time-->
                   <div class="col">
-                    <input type="text" class="form-control" placeholder="Date" aria-label="Date">
+                    <input type="text" class="form-control" placeholder="Date" name="date" aria-label="Date">
                   </div>
                   <div class="col">
-                    <input type="text" class="form-control" placeholder="Time" aria-label="Time">
+                    <input type="text" class="form-control" placeholder="Time" name="time" aria-label="Time">
                   </div>
                 </div>
 
                 <div class="input-group my-3">
                   <span class="input-group-text">description</span>
-                  <textarea class="form-control" aria-label="desc"></textarea>
+                  <textarea class="form-control" name="desc" aria-label="desc"></textarea>
                 </div>
 
-                <div class="row my-3"> <!--location and max participants-->
+                <div class="row my-3">
+                  <!--location and max participants-->
                   <div class="col">
-                    <input type="text" class="form-control" placeholder="place" aria-label="place">
+                    <input type="text" class="form-control" placeholder="place" name="place" aria-label="place">
                   </div>
                   <div class="col">
-                    <input type="text" class="form-control" placeholder="max participants" aria-label="participants">
+                    <input type="text" class="form-control" placeholder="max participants" name="max_member"
+                      aria-label="participants">
                   </div>
-                </div>                
+                </div>
 
                 <div class="input-group mb-3">
                   <span class="input-group-text">Banner</span>
-                  <input type="file" class="form-control" id="inputGroupFile02">
+                  <input type="file" class="form-control" name="banner" id="inputGroupFile02">
                 </div>
 
                 <button type="submit" class="btn btn-outline-dark">Done</button>
               </div>
             </div>
+          </div>
         </form>
 
 
