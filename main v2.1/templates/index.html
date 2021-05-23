@@ -14,15 +14,16 @@
       </tr>
     </thead>
     <tbody>
+      {% for newEvent in allEvents %}
       <tr>
         <th scope="row">{{loop.index}}</th>
-                    <td>{{newEvent.eventName}}</td>
-                    <td>{{newEvent.date}} - {{newEvent.time}}</td>
-                    <td>{{newEvent.place}}</td>
-                    <td>{{newEvent.desc}}</td>
-                    <td>{{newEvent.max_member}}</td>
+        <td>{{newEvent.eventName}}</td>
+        <td>{{newEvent.date}} - {{newEvent.time}}</td>
+        <td>{{newEvent.place}}</td>
+        <td>{{newEvent.desc}}</td>
+        <td>{{newEvent.max_member}}</td>
       </tr>
-  
+      {% endfor %}
     </tbody>
   </table>
 {% endblock body %}

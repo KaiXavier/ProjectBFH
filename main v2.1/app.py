@@ -22,7 +22,8 @@ class addevent(db.Model):
 
 @app.route("/")
 def home():
-    return render_template("index.html")
+    allEvents = addevent.query.all()
+    return render_template("index.html", allEvents=allEvents)
 
 @app.route("/login")
 def login():
