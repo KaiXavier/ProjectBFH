@@ -43,19 +43,27 @@
       </div>
       <!-- .............[your events code]................. -->
       <div id="youEvents" class="w3-container w3-border city">
+        {% if allEvents|length == 0 %}
+        <br>
+        <div class="alert alert-primary" role="alert">
+         No records found
+        </div>
+            
+        {% else %}
         <table class="table table-dark table-hover">
           <thead class="w3-black">
             <tr>
               <th scope="col">sNo</th>
               <th scope="col">Event</th>
               <th scope="col">Date and Time</th>
-              <th scope="col">place</th>
-              <th scope="col">description</th>
-              <th scope="col">max</th>
+              <th scope="col">Place</th>
+              <th scope="col">Description</th>
+              <th scope="col">Max</th>
+              <th scope="col">Action</th>
             </tr>
           </thead>
           <tbody>
-            {% for newEvent in allEvents %}
+          {% for newEvent in allEvents %}
             <tr>
               <th scope="row">{{loop.index}}</th>
               <td>{{newEvent.eventName}}</td>
@@ -63,16 +71,22 @@
               <td>{{newEvent.place}}</td>
               <td>{{newEvent.desc}}</td>
               <td>{{newEvent.max_member}}</td>
+              <td>
+                <a href="/delete/{{newEvent.sno}}" type="button" class="btn btn-dark mx-2">delete</button>
+                <!-- <a href="/update/{{newEvent.sno}}" type="button" class="btn btn-dark">update</button> -->
+              </td>
             </tr>
-            {% endfor %}
           </tbody>
         </table>
+          {% endfor %}
+          {% endif %}
+          
       </div>
 
       <!-- ........[add Events tab code].......... -->
       <div id="addEvents" class="w3-container w3-border city" style="display:none">
         <h2>addEvents</h2>
-        <form action= "/register" method="POST">
+        <form action="/register" method="POST">
           <div class="container my-3">
             <div class="card">
               <div class="card-body">

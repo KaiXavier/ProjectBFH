@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy, model
 
 app = Flask(__name__)
@@ -39,6 +39,13 @@ def register():
 
     allEvents = addevent.query.all()
     return render_template('register.html', allEvents = allEvents)
+
+@app.route('/delete/<int:sno>')
+def delete(sno):
+    allEvents = addevent.query.filter_by(sno=sno).first()
+    db.session.delete(allEvents)
+    db.session.commit()
+    return redirect('/register')
 
 @app.route('/login')
 def login():
