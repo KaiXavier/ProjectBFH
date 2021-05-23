@@ -46,9 +46,9 @@
         {% if allEvents|length == 0 %}
         <br>
         <div class="alert alert-primary" role="alert">
-         No records found
+          No records found
         </div>
-            
+
         {% else %}
         <table class="table table-dark table-hover">
           <thead class="w3-black">
@@ -63,7 +63,7 @@
             </tr>
           </thead>
           <tbody>
-          {% for newEvent in allEvents %}
+            {% for newEvent in allEvents %}
             <tr>
               <th scope="row">{{loop.index}}</th>
               <td>{{newEvent.eventName}}</td>
@@ -73,14 +73,14 @@
               <td>{{newEvent.max_member}}</td>
               <td>
                 <a href="/delete/{{newEvent.sno}}" type="button" class="btn btn-dark mx-2">delete</button>
-                <!-- <a href="/update/{{newEvent.sno}}" type="button" class="btn btn-dark">update</button> -->
+                  <!-- <a href="/update/{{newEvent.sno}}" type="button" class="btn btn-dark">update</button> -->
               </td>
             </tr>
           </tbody>
         </table>
-          {% endfor %}
-          {% endif %}
-          
+        {% endfor %}
+        {% endif %}
+
       </div>
 
       <!-- ........[add Events tab code].......... -->

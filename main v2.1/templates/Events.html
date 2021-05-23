@@ -2,5 +2,138 @@
 {% block title %} Events {% endblock title %}
 
 {% block body %}
-    
+<div class="w3-container">
+    <h2>Active Tabs</h2>
+    <p>To highlight the current tab/page the user is on, add a color class, and use JavaScript to update the active
+        link.</p>
+
+    <div class="w3-bar w3-black">
+        <button class="w3-bar-item w3-button tablink" onclick="openCity(event,'youEvents')">Your Events</button>
+        <button class="w3-bar-item w3-button tablink" onclick="openCity(event,'addEvents')">Add Event</button>
+        <button class="w3-bar-item w3-button tablink" onclick="openCity(event,'test')">test</button>
+    </div>
+    <!-- .............[your events code]................. -->
+    <div id="youEvents" class="w3-container w3-border city">
+        {% if allEvents|length == 0 %}
+        <br>
+        <div class="alert alert-primary" role="alert">
+            No records found
+        </div>
+
+        {% else %}
+        <table class="table table-dark table-hover">
+            <thead class="w3-black">
+                <tr>
+                    <th scope="col">sNo</th>
+                    <th scope="col">Event</th>
+                    <th scope="col">Date and Time</th>
+                    <th scope="col">Place</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Max</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for newEvent in allEvents %}
+                <tr>
+                    <th scope="row">{{loop.index}}</th>
+                    <td>{{newEvent.eventName}}</td>
+                    <td>{{newEvent.date}} - {{newEvent.time}}</td>
+                    <td>{{newEvent.place}}</td>
+                    <td>{{newEvent.desc}}</td>
+                    <td>{{newEvent.max_member}}</td>
+                    <td>
+                        <a href="/delete/{{newEvent.sno}}" type="button" class="btn btn-dark mx-2">delete</button>
+                        <a href="/update/{{newEvent.sno}}" type="button" class="btn btn-dark">update</button>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+
+    </div>
+
+    <!-- ........[add Events tab code].......... -->
+    <div id="addEvents" class="w3-container w3-border city" style="display:none">
+        <h2>addEvents</h2>
+        <form action="/events" method="POST">
+            <div class="container my-3">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="input-group flex-nowrap">
+                            <!--event name-->
+                            <span class="input-group-text" id="addon-wrapping">Event Name</span>
+                            <input type="text" class="form-control" placeholder="webinar,etc" name=eventName
+                                aria-label="webinar" aria-describedby="addon-wrapping">
+                        </div>
+
+                        <div class="row my-3">
+                            <!--date and Time-->
+                            <div class="col">
+                                <input type="text" class="form-control" placeholder="Date" name="date"
+                                    aria-label="Date">
+                            </div>
+                            <div class="col">
+                                <input type="text" class="form-control" placeholder="Time" name="time"
+                                    aria-label="Time">
+                            </div>
+                        </div>
+
+                        <div class="input-group my-3">
+                            <span class="input-group-text">description</span>
+                            <textarea class="form-control" name="desc" aria-label="desc"></textarea>
+                        </div>
+
+                        <div class="row my-3">
+                            <!--location and max participants-->
+                            <div class="col">
+                                <input type="text" class="form-control" placeholder="place" name="place"
+                                    aria-label="place">
+                            </div>
+                            <div class="col">
+                                <input type="text" class="form-control" placeholder="max participants" name="max_member"
+                                    aria-label="participants">
+                            </div>
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Banner</span>
+                            <input type="file" class="form-control" name="banner" id="inputGroupFile02">
+                        </div>
+
+                        <button type="submit" class="btn btn-outline-dark">Done</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+
+
+    </div>
+
+    <div id="test" class="w3-container w3-border city" style="display:none">
+        <h2>test</h2>
+        <p>for test.</p>
+    </div>
+</div>
+
+<script>
+    function openCity(evt, cityName) {
+        var i, x, tablinks;
+        x = document.getElementsByClassName("city");
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablink");
+        for (i = 0; i < x.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" bg-dark", "");
+        }
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " bg-dark";
+    }
+</script>
+
+</div>
+
 {% endblock body %}
