@@ -9,6 +9,9 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 class addevent(db.Model):
+
+    # uname = db.column(db.String(100), nullable = False)
+    # pswd = db.column(db.String(100), nullable = False)
     sno = db.Column(db.Integer, primary_key= True)
     eventName = db.Column(db.String(200), nullable= False)
     desc = db.Column(db.String(500), nullable= False)
@@ -21,14 +24,24 @@ class addevent(db.Model):
         return f"{self.sno} - {self.eventName} - {self.date} - {self.time}"
 
 
-@app.route("/")
+@app.route("/", methods = ['GET', 'POST'])
+def login():
+    error = None
+    if request.method == 'POST':
+        if request.form['uname'] != 'admin@gmail.com' or request.form['pswd'] != 'admin':
+            error = 'Invalid Credentials. Please try again.'
+        else:
+            return redirect('/home')
+    return render_template('login.html', error=error)
+    # return render_template("login.html")
+
+
+@app.route("/home")
 def home():
     allEvents = addevent.query.all()
     return render_template("index.html", allEvents=allEvents)
 
-@app.route("/login")
-def login():
-    return render_template("login.html")
+
 
 @app.route("/events", methods = ['GET', 'POST'])
 def Events():
