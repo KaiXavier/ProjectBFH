@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block title %} update page{% endblock title %}
+{% block body %}
+<h2>Update</h2>
+<p>Update your Events</p>
+<form action="/update/{{updateEvents.sno}}" method="POST">
+    <div class="container my-3">
+        <div class="card">
+            <div class="card-body">
+                <div class="input-group flex-nowrap">
+                    <!--event name-->
+                    <span class="input-group-text" id="addon-wrapping">Event Name</span>
+                    <input type="text" class="form-control" placeholder="webinar,etc" value="{{updateEvents.eventName}}" name=eventName
+                        aria-label="webinar" aria-describedby="addon-wrapping">
+                </div>
+
+                <div class="row my-3">
+                    <!--date and Time-->
+                    <div class="col">
+                        <input type="text" class="form-control" placeholder="Date" name="date" value="{{updateEvents.date}}"
+                            aria-label="Date">
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" placeholder="Time" name="time" value="{{updateEvents.time}}"
+                            aria-label="Time">
+                    </div>
+                </div>
+
+                <div class="input-group my-3">
+                    <span class="input-group-text">description</span>
+                    <textarea class="form-control" name="desc" aria-label="desc" value="{{updateEvents.desc}}"></textarea>
+                </div>
+
+                <div class="row my-3">
+                    <!--location and max participants-->
+                    <div class="col">
+                        <input type="text" class="form-control" placeholder="platform" name="place" value="{{updateEvents.place}}"
+                            aria-label="place">
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" placeholder="max participants" name="max_member" value="{{updateEvents.max_member}}"
+                            aria-label="participants">
+                    </div>
+                </div>
+
+                <div class="input-group mb-3">
+                    <span class="input-group-text">Banner</span>
+                    <input type="file" class="form-control" name="banner" id="inputGroupFile02">
+                </div>
+
+                <button type="submit" class="btn btn-outline-dark">update</button>
+            </div>
+        </div>
+    </div>
+</form>
+
+{% endblock body %}
